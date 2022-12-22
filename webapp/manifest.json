@@ -17,7 +17,7 @@
         },
         "dataSources": {
             "mainService": {
-                "uri": "v2/order-to-cash/",
+                "uri": "/order-to-cash/",
                 "type": "OData",
                 "settings": {
                     "annotations": [
@@ -106,7 +106,7 @@
         "globalFilterEntityType": "BillingDocTypes",
         "containerLayout": "resizable",
         "enableLiveFilter": false,
-        "considerAnalyticalParameters": false,
+        "considerAnalyticalParameters": true,
         "cards": {
             "BillingDocType": {
                 "model": "mainModel",
