@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="OrderToCash" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="BillingDocTypes" EntityType="OrderToCash.BillingDocTypes"/>
+            </EntityContainer>
+            <EntityType Name="BillingDocTypes">
+                <Property Name="bilDocType" Type="Edm.String" MaxLength="4"/>
+                <Property Name="companyCode" Type="Edm.String" MaxLength="4"/>
+                <Property Name="salesOrg" Type="Edm.String" MaxLength="4"/>
+                <Property Name="latestDate" Type="Edm.Date"/>
+                <Property Name="totalCount" Type="Edm.Int32"/>
+            </EntityType>
+            <Annotations Target="OrderToCash.BillingDocTypes">
+                <Annotation Term="UI.Chart" Qualifier="BillingDocTypes">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
+                        <PropertyValue Property="Description" String="Billing Document Types"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>bilDocType</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>totalCount</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.PresentationVariant" Qualifier="BillingDocTypes">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="totalCount"/>
+                                    <PropertyValue Property="Descending" Bool="true"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="MaxItems" Int="10"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>bilDocType</PropertyPath>
+                        <PropertyPath>companyCode</PropertyPath>
+                        <PropertyPath>salesOrg</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="bilDocType"/>
+                            <PropertyValue Property="Label" String="Billing Document Type"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="companyCode"/>
+                            <PropertyValue Property="Label" String="Company Code"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="salesOrg"/>
+                            <PropertyValue Property="Label" String="Sales Organization"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="latestDate"/>
+                            <PropertyValue Property="Label" String="Latest Date"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="totalCount"/>
+                            <PropertyValue Property="Label" String="Total Count"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="OrderToCash.EntityContainer/BillingDocTypes">
+                <Annotation Term="UI.PresentationVariant" Qualifier="BillingDocTypes">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="totalCount"/>
+                                    <PropertyValue Property="Descending" Bool="true"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="MaxItems" Int="10"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="OrderToCash.BillingDocTypes/bilDocType">
+                <Annotation Term="Common.Label" String="Billing Document Type"/>
+            </Annotations>
+            <Annotations Target="OrderToCash.BillingDocTypes/companyCode">
+                <Annotation Term="Common.Label" String="Company Code"/>
+            </Annotations>
+            <Annotations Target="OrderToCash.BillingDocTypes/salesOrg">
+                <Annotation Term="Common.Label" String="Sales Organization"/>
+            </Annotations>
+            <Annotations Target="OrderToCash.BillingDocTypes/latestDate">
+                <Annotation Term="Common.Label" String="Latest Date"/>
+            </Annotations>
+            <Annotations Target="OrderToCash.BillingDocTypes/totalCount">
+                <Annotation Term="Common.Label" String="Total Count"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
